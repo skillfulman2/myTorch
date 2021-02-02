@@ -13,9 +13,9 @@ Xval = dataset['Xval']
 yval = dataset['yval']
 
 # dataset visualization
-plt.scatter(X[:, 0], X[:, 1], marker = "x")
-plt.xlabel('Latency(ms)')
-plt.ylabel('Throughput(mb/s)')
+#plt.scatter(X[:, 0], X[:, 1], marker = "x")
+#plt.xlabel('Latency(ms)')
+#plt.ylabel('Throughput(mb/s)')
 
 def estimateGaussian(X):
     n = np.size(X, 1)
@@ -110,11 +110,11 @@ count_outliers = len(listOfOutliers)
 print('\n\nNumber of outliers:', count_outliers)
 print('\n',listOfOutliers)
 
-plt.scatter(X[:, 0], X[:, 1], marker = "x")
-plt.xlabel('Latency(ms)')
-plt.ylabel('Throughput(mb/s)')
-plt.scatter(X[listOfOutliers,0], X[listOfOutliers, 1], facecolors = 'none', edgecolors = 'r')
-plt.show()
+#plt.scatter(X[:, 0], X[:, 1], marker = "x")
+#plt.xlabel('Latency(ms)')
+#plt.ylabel('Throughput(mb/s)')
+#plt.scatter(X[listOfOutliers,0], X[listOfOutliers, 1], facecolors = 'none', edgecolors = 'r')
+#plt.show()
 
 
 # Using a larger dataset
@@ -123,6 +123,10 @@ newDataset = sio.loadmat('anomalyDataTest.mat')
 Xtest = newDataset['X']
 Xvaltest = newDataset['Xval']
 yvaltest = newDataset['yval']
+
+plt.scatter(Xtest[:, 0], Xtest[:, 1], marker = "x")
+plt.xlabel('Latency(ms)')
+plt.ylabel('Throughput(mb/s)')
 
 print(Xtest.shape)
 print(Xvaltest.shape)
@@ -140,6 +144,14 @@ print('\nBest epsilon and F1 are\n',epsilontest, F1test)
 
 outliersTest = ptest < epsilontest
 listOfOl = findIndices(outliersTest)
+
+plt.scatter(Xtest[:, 0], Xtest[:, 1], marker = "x")
+plt.xlabel('Latency(ms)')
+plt.ylabel('Throughput(mb/s)')
+plt.scatter(Xtest[listOfOl,0], Xtest[listOfOl, 1], facecolors = 'none', edgecolors = 'r')
+plt.show()
+
+
 
 print('\n\n Outliers are:\n',listOfOl)
 print('\n\nNumber of outliers are: ',len(listOfOl))
